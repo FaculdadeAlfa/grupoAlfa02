@@ -1,0 +1,65 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<title>Fábio - Testes Com JSF e JPA</title>
+</h:head>
+<h:body>
+	<h:outputStylesheet library="css" name="geral.css"/>
+	<h:form id="formAutomovel">
+		<p:growl id="growl" showDetail="true" />
+		<h:panelGrid id="pgCampos" columns="2">
+			#{msg.label_marca}	 
+			<h:selectOneMenu id="marca" label="marca" value="#{automovelMB.idMarca}">
+				<f:selectItem itemLabel="#{msg.label_selecione}" noSelectionOption="true"/>
+				<f:selectItems value="#{marcaBean.marcas}" var="marca" itemValue="#{marca.id}" itemLabel="#{marca.nome}" />
+				<f:ajax event="change" execute="@this" render="selectModelo" />
+			</h:selectOneMenu>
+			#{msg.label_modelo}		
+			<h:selectOneMenu id="selectModelo" label="modelo" value="#{automovelMB.automovel.modelo}" converter="entityConverter">
+				<f:selectItem itemLabel="#{msg.label_selecione}" noSelectionOption="true" />
+				<f:selectItems value="#{automovelMB.marca.modelos}" var="modelo" itemValue="#{modelo}" itemLabel="#{modelo.nome}" />
+			</h:selectOneMenu>
+			#{msg.label_ano_fabricacao} <h:inputText value="#{automovelMB.automovel.anoFabricacao}" />		
+			#{msg.label_ano_modelo} <h:inputText value="#{automovelMB.automovel.anoModelo}" />		
+			#{msg.label_observacoes} <h:inputTextarea value="#{automovelMB.automovel.observacoes}" />
+			<p:commandButton action="#{automovelMB.salvar}" value="Salvar" update="growl formAutomovel" disabled="#{automovelMB.emEdicao}"/>
+			<p:commandButton action="#{automovelMB.alterar}" value="Alterar" update="growl formAutomovel" rendered="#{automovelMB.emEdicao}"/>
+		</h:panelGrid>
+
+		<p:dataTable id="dtAutomoveis" value="#{automovelMB.automoveis}" var="automovel" paginator="true" rows="5" lazy="true">
+			<p:column>
+				<f:facet name="header">#{msg.label_marca}</f:facet>
+				#{automovel.modelo.marca.nome}
+			</p:column>
+			<p:column>
+				<f:facet name="header">#{msg.label_modelo}</f:facet>
+				#{automovel.modelo.nome}
+			</p:column>
+			<p:column>
+				<f:facet name="header">#{msg.label_ano_fabricacao}</f:facet>
+				#{automovel.anoFabricacao}
+			</p:column>
+			<p:column>
+				<f:facet name="header">#{msg.label_ano_modelo}</f:facet>
+				#{automovel.anoModelo}
+			</p:column>
+			<p:column>
+				<f:facet name="header">#{msg.label_observacoes}</f:facet>
+				#{automovel.observacoes}
+			</p:column>
+			<p:column>
+				<f:facet name="header">#{msg.label_acoes}</f:facet>
+				<div class="center">
+					<h:commandLink action="#{automovelMB.editar(automovel)}" update="formAutomovel selectModelo">
+						<h:graphicImage library="imagens" name="editar.png" />
+					</h:commandLink>
+					<h:outputText value="&#160;"/>
+					<h:commandLink action="#{automovelMB.excluir(automovel)}" update="growl">
+						<h:graphicImage library="imagens" name="delete-18x24.png" />
+					</h:commandLink>
+				</div>
+			</p:column>
+		</p:dataTable>
+	</h:form>
+</h:body>
+</html>

@@ -1,0 +1,11 @@
+.center {
+    vertical-align: middle;
+    text-align: center;
+    horizontal-align: center;
+    margin: auto;
+}
+
+.center2 {
+    vertical-align: middle;
+    horizontal-align: center;
+}
