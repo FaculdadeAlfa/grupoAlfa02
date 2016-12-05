@@ -16,13 +16,13 @@
         <authentication-provider>
             <jdbc-user-service data-source-ref="dataSource"
                users-by-username-query="SELECT username, password, enable FROM usuario WHERE username=?"
-               authorities-by-username-query="SELECT Usuario_username as username, autorizacoes_nome as authority FROM usuario_autorizacao WHERE Usuario_username=?"
+               authorities-by-username-query="SELECT usuario_username as username, autorizacoes_nome as authority FROM usuario_autorizacao WHERE usuario_username=?"
             />
         </authentication-provider>
     </authentication-manager>
  
     <b:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
-        <b:property name="url" value="jdbc:mysql://localhost:3306/jpajsf" />
+        <b:property name="url" value="jdbc:mysql://localhost:3306/alfa02" />
         <b:property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <b:property name="username" value="root" />
         <b:property name="password" value="12345" />
