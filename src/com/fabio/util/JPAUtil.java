@@ -16,14 +16,14 @@ public class JPAUtil {
 		return ENTITY_MANAGER_FACTORY.createEntityManager();
 	}
 	
-	public static Statistics getStatistics(){
-		EntityManager em = JPAUtil.getEntityManager();
-		Session session = (Session) em.getDelegate();
-		SessionFactory factory = session.getSessionFactory();
-		Statistics statistics = factory.getStatistics();
-		
-		return statistics;
-	}
+//	public static Statistics getStatistics(){
+//		EntityManager em = JPAUtil.getEntityManager();
+//		Session session = (Session) em.getDelegate();
+//		SessionFactory factory = session.getSessionFactory();
+//		Statistics statistics = factory.getStatistics();
+//		
+//		return statistics;
+//	}
 
 	public static void printStatistics(){
 		Statistics statistics = getStatistics();
