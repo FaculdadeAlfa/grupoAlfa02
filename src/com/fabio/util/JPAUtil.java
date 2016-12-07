@@ -4,9 +4,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.stat.Statistics;
 
 public class JPAUtil {
 	
@@ -25,11 +22,11 @@ public class JPAUtil {
 //		return statistics;
 //	}
 
-	public static void printStatistics(){
-		Statistics statistics = getStatistics();
-		System.out.println("Quantidade de entidades buscadas: "+ statistics.getEntityFetchCount());
-		System.out.println("Quantidade de entidades Carregadas: "+ statistics.getEntityLoadCount());
-		System.out.println("Quantidade de listas buscadas: "+ statistics.getCollectionFetchCount());
-	}
+//	public static void printStatistics(){
+//		Statistics statistics = getStatistics();
+//		System.out.println("Quantidade de entidades buscadas: "+ statistics.getEntityFetchCount());
+//		System.out.println("Quantidade de entidades Carregadas: "+ statistics.getEntityLoadCount());
+//		System.out.println("Quantidade de listas buscadas: "+ statistics.getCollectionFetchCount());
+//	}
 
 }
